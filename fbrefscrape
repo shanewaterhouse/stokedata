@@ -1,0 +1,13 @@
+import pandas as pd #(lf)from datetime import datetime#(lf)
+df = pd.read_html('https://fbref.com/en/squads/17892952/2024-2025/matchlogs/all_comps/schedule/Stoke-City-Scores-and-Fixtures-All-Competitions',
+attrs={""id"":""matchlogs_for""})[0]#(lf)df = df.rename(#(lf)    {#(lf)        'Comp' : 'Competition',
+#(lf)        'GF': 'Goals For',#(lf)        'GA': 'Goals Against',
+#(lf)        'Poss': 'Possession', #(lf)    },
+#(lf)    #(lf)    axis=1#(lf))#(lf)df.drop(columns=['Match Report',
+'Day',
+""Formation"",
+""Opp Formation"",
+""Notes""])#(lf)
+df['DateTime'] = pd.to_datetime(df['Date'].astype(str) + ' ' +df[""Time""].astype(str))#(lf)dfnew = df.drop(columns=['Date', 'Time','Match Report', 'Day', ""Formation"", ""Opp Formation"", ""Notes"", ""Referee""])
+#(lf)current_date = datetime.now()#(lf)filtered_df = dfnew[df['DateTime'] < current_date]#(lf)#(lf)
+print(filtered_df.head)#(lf)"
